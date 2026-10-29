@@ -5,13 +5,22 @@
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
+    "scheme": "kinesis",
+    "userInterfaceStyle": "automatic",
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSBluetoothAlwaysUsageDescription": "O Kinesis usa o Bluetooth para conectar sensores de movimento.",
+        "NSBluetoothPeripheralUsageDescription": "O Kinesis usa o Bluetooth para conectar sensores de movimento.",
+        "NSPhotoLibraryUsageDescription": "O Kinesis usa suas fotos para a foto de perfil."
+      }
     },
     "android": {
+      "permissions": [
+        "android.permission.BLUETOOTH_CONNECT"
+      ],
       "adaptiveIcon": {
-        "backgroundColor": "#E6F4FE",
+        "backgroundColor": "#0B7A5A",
         "foregroundImage": "./assets/android-icon-foreground.png",
         "backgroundImage": "./assets/android-icon-background.png",
         "monochromeImage": "./assets/android-icon-monochrome.png"
@@ -20,6 +29,42 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-secure-store",
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "O Kinesis usa a câmera para registrar movimento.",
+          "microphonePermission": "O Kinesis não grava áudio.",
+          "recordAudioAndroid": false,
+          "barcodeScannerEnabled": false
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "O Kinesis usa suas fotos para a foto de perfil.",
+          "cameraPermission": "O Kinesis usa a câmera para a foto de perfil e para registrar movimento."
+        }
+      ],
+      [
+        "expo-splash-screen",
+        {
+          "backgroundColor": "#0B7A5A"
+        }
+      ],
+      [
+        "expo-status-bar",
+        {
+          "hidden": true,
+          "style": "light"
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true
     }
   }
 }
